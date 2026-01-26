@@ -1,48 +1,68 @@
 # Hackathon_Django
-#  
-View Property Details
-As a user, I want to see detailed information about a property, including description, photos, address, price per night, maximum guests, and a calendar showing availability, so I can make an informed decision.
 
-Check Availability
-As a user, I want to see a calendar highlighting available and unavailable dates for a chosen property, so I can plan my stay.
+## User Stories
 
-Make a Booking
-As a user, I want to select my check-in and check-out dates, number of guests, and submit a reservation for an available property, so I can book a stay.
+**US01: As a User, I want to view property details so I can make an informed booking decision.**
 
-Receive Booking Confirmation
-As a user, I want to receive a confirmation once my booking is successful, so I know my reservation is secured.
+Acceptance criteria:
 
-View My Bookings
-As a user, I want to see a list of all my current, upcoming, and past bookings, so I can manage my stays.
+-Page displays property description, photos, address, price per night, and maximum guests.
+-Availability calendar is visible.
+-Page uses semantic headings and accessible image alt text.
 
-Cancel a Booking
-As a user, I want to cancel an upcoming booking if my plans change, so I’m not charged or can free up the dates. 
-Could have
-As A user i want to pay for my reservation
-As a Site Owner/Admin (Superuser features)
-Manage Users
-As an admin, I want to manage (view/edit/deactivate) user accounts, so I can maintain platform safety and integrity.
+**US02: As a User, I want to check property availability so I can plan my stay.**
 
-View Booking Analytics
-As an admin, I want to view statistics about property occupancy rates and booking cancellations, so I can track business performance.
-As a Property Owner/Admin
-Add a Property
-As an admin, I want to list a new property with details like title, description, address, price, and max guests, so users can book it.
+Acceptance criteria:
 
-Set Property Availability
-As an admin, I want to adjust the availability and price for specific dates on my property’s calendar, so I can block off dates or offer special rates.
+-Calendar highlights available and unavailable dates.
+-Calendar is keyboard-navigable and screen-reader friendly.
 
-View All Bookings for My Properties
-As an admin, I want to see all bookings and their statuses for my properties, so I can manage reservations.
+**US03: As a User, I want to make a booking so I can reserve a stay.**
 
-Confirm or Cancel Bookings
-As an admin, I want to approve or cancel guest bookings, so I control who stays when.
-As All Users
-Register & Login
-As a user, I want to create an account and securely log in/out, so my data and bookings are safe.
+Acceptance criteria:
 
-Update My Profile
-As a user, I want to update my personal information (name, email, phone, password), so my account stays current.
+-Form allows selection of check-in/check-out dates and number of guests.
+-Form validates input and prevents double-booking.
+-Confirmation message is shown after successful booking.
+-Form is accessible (labels, error messages, ARIA as needed).
 
-Receive Notifications
-As a user, I want to receive notifications (email or in-app) for booking confirmations, cancellations, or important updates, so I’m always informed.
+**US04: As a User, I want to view my bookings so I can manage my stays.**
+
+Acceptance criteria:
+
+-Page lists current, upcoming, and past bookings.
+-Each booking shows property, dates, and status.
+-Page uses semantic structure for accessibility.
+
+**US05: As a User, I want to cancel a booking so I can change my plans.**
+
+Acceptance criteria:
+
+-Cancel button is available for upcoming bookings.
+-User receives confirmation of cancellation.
+-Action is accessible and confirmed with a dialog.
+
+**US06: As a User, I want to register and log in so my data and bookings are secure.**
+
+Acceptance criteria:
+
+-Registration and login forms validate input and provide feedback.
+-Passwords are securely handled.
+-Forms are accessible (labels, focus order, ARIA as needed).
+
+**US07: As a User, I want to update my profile so my information stays current.**
+
+Acceptance criteria:
+
+-Profile page allows editing name, email, phone, and password.
+-Changes are saved and confirmed.
+-Page is accessible.
+
+**US08: As a User, I want to receive notifications for booking confirmations and cancellations so I’m always informed.**
+
+Acceptance criteria:
+
+-User receives email or in-app notification for booking events.
+-Notifications are accessible and clearly worded.
+
+![Project Boeard](https://github.com/users/darakhshanda/projects/10/views/1)
