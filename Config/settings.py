@@ -71,7 +71,7 @@ LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_SIGNUP_REDIRECT_URL = '/profile/'
 
 # Add these allauth settings (updated syntax for newer allauth)
-ACCOUNT_EMAIL_VERIFICATION = {'email'}
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_LOGIN_METHODS = {'username'}
 ACCOUNT_SIGNUP_FIELDS = ['username*', 'password1*', 'password2*']
 # Email verification settings
