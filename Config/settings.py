@@ -33,6 +33,7 @@ if os.path.isfile("env.py"):
     DEBUG = True
 else:
     DEBUG = False
+DEBUG = False
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1', 'localhost']
