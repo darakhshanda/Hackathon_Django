@@ -58,16 +58,20 @@ INSTALLED_APPS = [
     'bootstrap5',
     'crispy_forms',
     'crispy_bootstrap5',
+    'booking',
+    'property',
+    'userprofile',
+    'availability',
 ]
 # Remove the duplicate and fix the order
 SITE_ID = 1
-LOGIN_REDIRECT_URL = '/dashboard/'
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 # Or '/profile-setup/' if route exists
 ACCOUNT_SIGNUP_REDIRECT_URL = '/profile/'
 
 # Add these allauth settings (updated syntax for newer allauth)
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = {'email'}
 ACCOUNT_LOGIN_METHODS = {'username'}
 ACCOUNT_SIGNUP_FIELDS = ['username*', 'password1*', 'password2*']
 # Email verification settings
