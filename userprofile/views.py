@@ -6,6 +6,10 @@ from .forms import ProfileSetupForm
 # Profile Setup
 
 
+def index(request):
+    return render(request, 'index.html')
+
+
 @login_required()
 def profile_setup(request):
     if request.method == 'POST':
@@ -37,7 +41,11 @@ def edit_profile(request):
 def user_profile(request, user_id):
     from django.contrib.auth.models import User
     user = User.objects.get(id=user_id)
-    return render(request, 'userprofile/user_profile.html', {'profile_user': user})
+    is_admin = request.user.is_staff or request.user.is_superuser
+    return render(request, 'userprofile.html', {
+        'profile_user': user,
+        'is_admin': is_admin,
+    })
 
 
 @login_required()
