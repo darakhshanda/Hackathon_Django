@@ -34,7 +34,21 @@
                     <h5 class="card-title">Urban Apartment</h5>
                     <p class="card-text">Experience city life in our modern apartment located in the heart of downtown.
                     </p>
-                    <a href="#" class="btn btn-primary">View Details</a>
+
+                    <!-- Booking Form -->
+                    <form method="post" action="{% url 'book_property' property_id=1 %}">
+                        {% csrf_token %}
+                        <div class="mb-2">
+                            <label for="checkin1" class="form-label">Check-in</label>
+                            <input type="date" class="form-control" id="checkin1" name="checkin" required>
+                        </div>
+                        <div class="mb-2">
+                            <label for="checkout1" class="form-label">Check-out</label>
+                            <input type="date" class="form-control" id="checkout1" name="checkout" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Book Now</button>
+                    </form>
+
                 </div>
             </div>
         </div>
