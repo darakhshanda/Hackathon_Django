@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Welcome to Airbnb Holiday Booking</h1>
+    <p>Your personal holiday booking companion. Explore our curated listings and find your perfect getaway.</p>
+    <div class="row">
+        <!-- Example Property Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{% static 'images/property1.jpg' %}" class="card-img-top" alt="Property 1">
+                <div class="card-body">
+                    <h5 class="card-title">Cozy Beachside Cottage</h5>
+                    <p class="card-text">Enjoy a relaxing stay at our charming beachside cottage with stunning ocean
+                        views.</p>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{% static 'images/property2.jpg' %}" class="card-img-top" alt="Property 2">
+                <div class="card-body">
+                    <h5 class="card-title">Mountain Retreat Cabin</h5>
+                    <p class="card-text">Escape to the mountains in our cozy cabin, perfect for nature lovers.</p>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{% static 'images/property3.jpg' %}" class="card-img-top" alt="Property 3">
+                <div class="card-body">
+                    <h5 class="card-title">Urban Apartment</h5>
+                    <p class="card-text">Experience city life in our modern apartment located in the heart of downtown.
+                    </p>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
