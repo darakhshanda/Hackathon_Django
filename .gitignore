@@ -15,3 +15,4 @@ media/
 *.env
 *.pot
 *.mo
+.github/
