@@ -28,6 +28,5 @@ urlpatterns = [
     path('booking/', include('booking.urls')),
     path('property/', include('property.urls')),
     path('userprofile/', include('userprofile.urls')),
-    path('availability/', include('availability.urls')),
     
 ]

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Cancel Booking</h2>
+    
+    <div class="alert alert-warning" role="alert">
+        <strong>Are you sure you want to cancel this booking?</strong>
+        <br>This action cannot be undone.
+    </div>
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Booking Details</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Property:</strong> {{ booking.property.name }}</p>
+                    <p><strong>Location:</strong> {{ booking.property.location }}</p>
+                    <p><strong>Check-in:</strong> {{ booking.check_in }}</p>
+                    <p><strong>Check-out:</strong> {{ booking.check_out }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Guests:</strong> {{ booking.guests }}</p>
+                    <p><strong>Total Price:</strong> ${{ booking.total_price }}</p>
+                    <p><strong>Status:</strong> 
+                        <span class="badge bg-{% if booking.status == 'confirmed' %}success{% elif booking.status == 'pending' %}warning{% endif %}">
+                            {{ booking.get_status_display }}
+                        </span>
+                    </p>
+                    <p><strong>Booked on:</strong> {{ booking.created_at|date:"M d, Y" }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="d-flex gap-2">
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Yes, Cancel Booking</button>
+        </form>
+        <a href="{% url 'booking:booking_detail' booking_id=booking.id %}" class="btn btn-secondary">No, Keep Booking</a>
+    </div>
+</div>
+{% endblock %}

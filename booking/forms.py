@@ -1,26 +1,34 @@
-
-from booking.models import Booking
-from property import models
-from availability import models
-from userprofile import forms
 from django import forms
-
+from booking.models import Booking
+from datetime import date
 
 class CreateBookingForm(forms.ModelForm):
     class Meta:
         model = Booking
-        fields = ['property.Property', 'check_in',
-                  'check_out', 'guests', 'package']
-        exclude = ['user', 'status', 'total_price', 'created_at', 'updated_at']
+        fields = ['check_in', 'check_out', 'guests']  # Remove 'property'
         widgets = {
-
-            'property': forms.TextInput(attrs={'class': 'form-control'}),
-            'check_in': forms.DateInput(attrs={'type': 'date'}),
-            'check_out': forms.DateInput(attrs={'type': 'date'}),
-            'guests': forms.NumberInput(attrs={'min': 1}),
-
+            'check_in': forms.DateInput(
+                attrs={
+                    'type': 'date', 
+                    'class': 'form-control',
+                    'min': date.today().isoformat()
+                }
+            ),
+            'check_out': forms.DateInput(
+                attrs={
+                    'type': 'date', 
+                    'class': 'form-control',
+                    'min': date.today().isoformat()
+                }
+            ),
+            'guests': forms.NumberInput(
+                attrs={
+                    'min': 1, 
+                    'class': 'form-control'
+                }
+            ),
         }
-
+    
     def clean(self):
         cleaned_data = super().clean()
         check_in = cleaned_data.get('check_in')
@@ -29,8 +37,10 @@ class CreateBookingForm(forms.ModelForm):
         if check_in and check_out:
             if check_in >= check_out:
                 raise forms.ValidationError(
-                    "Check-out date must be after check-in date.")
-        if check_in and check_in < models.Availability.today_date():
-            raise forms.ValidationError(
-                "Check-in date cannot be in the past.")
+                    "Check-out date must be after check-in date."
+                )
+            if check_in < date.today():
+                raise forms.ValidationError(
+                    "Check-in date cannot be in the past."
+                )
         return cleaned_data

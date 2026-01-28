@@ -33,7 +33,7 @@ if os.path.isfile("env.py"):
     DEBUG = True
 else:
     DEBUG = False
-DEBUG = False
+DEBUG = True
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1', 'localhost']
@@ -62,14 +62,13 @@ INSTALLED_APPS = [
     'booking',
     'property',
     'userprofile',
-    'availability',
 ]
 # Remove the duplicate and fix the order
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 # Or '/profile-setup/' if route exists
-ACCOUNT_SIGNUP_REDIRECT_URL = '/profile/'
+ACCOUNT_SIGNUP_REDIRECT_URL = '/userprofile/'
 
 # Add these allauth settings (updated syntax for newer allauth)
 ACCOUNT_EMAIL_VERIFICATION = 'none'

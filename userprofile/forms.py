@@ -37,18 +37,13 @@ class ProfileSetupForm(forms.ModelForm):
         }
 
     def clean(self):
+        """Validate form data for profile fields only"""
         cleaned_data = super().clean()
-        guests = cleaned_data.get('guests')
-        # Assuming there's a field for property limit
-        property_limit = cleaned_data.get('')
-
-        # Validate age
-        if guests and (guests < 1 or guests > 2):
-            self.add_error(
-                'guests', 'number of maximum guests per room should 2.')
-        elif guests > 2 and guests <= 5:  # Special case for more than 2 guests according to property limit
-            self.add_error(
-                'guests', 'For more than 2 guests, please contact support.')
+        
+        # Add any profile-specific validation here if needed
+        # (guests validation removed - that belongs in booking forms)
+        
+        return cleaned_data
 
     def save(self, commit=True):
         """Save profile and update user name"""

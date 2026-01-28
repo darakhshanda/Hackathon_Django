@@ -1,37 +1,98 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse_lazy
 from django.contrib import messages
+from property.models import Property
 from booking.forms import CreateBookingForm
 from booking.models import Booking
 
-# Create your views here.
-
-
 @login_required()
 def create_booking(request, property_id):
+    """Create a booking for a specific property"""
+    
+    # Get the property
+    property_obj = get_object_or_404(Property, id=property_id)
+    
     if request.method == 'POST':
         form = CreateBookingForm(request.POST)
+        
         if form.is_valid():
-            booking = form.save(commit=False)
-            booking.created_by = request.user
-            # You may want to set property_id to booking if your model supports it
-            # booking.property_id = property_id
-            booking.save()
-            messages.success(request, 'Booking created successfully!')
-            return redirect('booking:booking_detail', booking_id=booking.id)
+            check_in = form.cleaned_data['check_in']
+            check_out = form.cleaned_data['check_out']
+            guests = form.cleaned_data['guests']
+            
+            # Check if property is available using our new method
+            if property_obj.is_available(check_in, check_out):
+                # Create the booking as PENDING (admin needs to confirm)
+                booking = form.save(commit=False)
+                booking.user = request.user
+                booking.property = property_obj
+                
+                # Calculate total price
+                nights = (check_out - check_in).days
+                booking.total_price = property_obj.price_per_night * nights
+                booking.status = 'pending'  # Starts as pending
+                
+                booking.save()
+                
+                messages.success(
+                    request, 
+                    "Booking request submitted! It will be confirmed by our team."
+                )
+                return redirect('booking:booking_detail', booking_id=booking.id)
+            else:
+                messages.error(
+                    request, 
+                    "Sorry, this property is not available for the selected dates."
+                )
     else:
         form = CreateBookingForm()
-
+    
     context = {
         'form': form,
-        'property_id': property_id,
-        'user': request.user
+        'property': property_obj,
     }
     return render(request, 'booking/create_booking.html', context)
 
-
 @login_required()
 def booking_detail(request, booking_id):
-    # Logic to retrieve and display details of a specific booking
-    return render(request, 'booking/booking_detail.html', {'booking_id': booking_id})
+    """Show booking details"""
+    booking = get_object_or_404(Booking, id=booking_id)
+    
+    # Only show booking to the user who created it
+    if booking.user != request.user:
+        messages.error(request, "You can only view your own bookings.")
+        return redirect('index_url')
+    
+    return render(request, 'booking/booking_detail.html', {'booking': booking})
+
+@login_required()
+def cancel_booking(request, booking_id):
+    """Cancel a booking"""
+    booking = get_object_or_404(Booking, id=booking_id)
+    
+    # Security check: Only the booking owner can cancel
+    if booking.user != request.user:
+        messages.error(request, "You can only cancel your own bookings.")
+        return redirect('index_url')
+    
+    # Only allow cancellation of pending or confirmed bookings
+    if booking.status not in ['pending', 'confirmed']:
+        messages.error(request, f"Cannot cancel a {booking.status} booking.")
+        return redirect('booking:booking_detail', booking_id=booking.id)
+    
+    if request.method == 'POST':
+        # Confirm cancellation
+        booking.status = 'cancelled'
+        booking.save()
+        
+        messages.success(
+            request, 
+            f"Booking for {booking.property.name} has been cancelled successfully."
+        )
+        return redirect('user_profile', user_id=request.user.id)
+    
+    # Show confirmation page
+    context = {
+        'booking': booking,
+    }
+    return render(request, 'booking/cancel_booking.html', context)
