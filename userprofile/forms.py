@@ -11,7 +11,7 @@ class ProfileSetupForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ['first_name', 'last_name', 'email', 'phome_number',]
+        fields = ['first_name', 'last_name', 'email', 'phone_number',]
         exclude = ['created_at', 'updated_at', 'is_active',]
         widgets = {
             'first_name': forms.TextInput(
@@ -23,7 +23,7 @@ class ProfileSetupForm(forms.ModelForm):
             'email': forms.EmailInput(
                 attrs={'class': 'form-control',
                        'placeholder': 'Enter your email address'}),
-            'phome_number': forms.TextInput(
+            'phone_number': forms.TextInput(
                 attrs={'class': 'form-control',
                        'placeholder': 'Enter your phone number'}),
         }
@@ -32,7 +32,7 @@ class ProfileSetupForm(forms.ModelForm):
             'first_name': 'First Name',
             'last_name': 'Last Name',
             'email': 'Email Address',
-            'phome_number': 'Phone Number',
+            'phone_number': 'Phone Number',
 
         }
 

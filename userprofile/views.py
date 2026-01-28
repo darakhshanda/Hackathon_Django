@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileSetupForm
+from .models import UserProfile
 
 # Create your views here.
 # Profile Setup
@@ -43,7 +44,7 @@ def user_profile(request, user_id):
     user = User.objects.get(id=user_id)
     is_admin = request.user.is_staff or request.user.is_superuser
     return render(request, 'userprofile.html', {
-        'profile_user': user,
+        'user_profiles': user,
         'is_admin': is_admin,
     })
 
