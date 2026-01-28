@@ -46,8 +46,8 @@ class Property(models.Model):
         conflicting_bookings = Booking.objects.filter(
             property=self,
             status__in=['confirmed', 'pending'],
-            check_in__lt=Booking.check_out,
-            check_out__gt=Booking.check_in,
+            check_in__lt=check_out,      # Use the parameter, not Booking.check_out
+            check_out__gt=check_in,      # Use the parameter, not Booking.check_in
         ).exists()
 
         return not conflicting_bookings
