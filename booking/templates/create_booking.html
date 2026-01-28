@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Create a Booking</h2>
+    <form method="post" action="{% url 'create_booking' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="mb-3">
+            <label for="service" class="form-label">Service</label>
+            <select class="form-select" id="service" name="service" required>
+                <option value="" disabled selected>Select a service</option>
+                {% for service in services %}
+                <option value="{{ service.id }}">{{ service.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" class="form-control" id="date" name="date" required>
+        </div>
+        <div class="mb-3">
+            <label for="time" class="form-label">Time</label>
+            <input type="time" class="form-control" id="time" name="time" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Booking</button>
+    </form>
+</div>
+{% endblock %}
