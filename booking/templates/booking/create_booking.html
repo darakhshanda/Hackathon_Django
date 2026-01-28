@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% url 'booking_detail' as booking_detail_url %}
 
 {% block content %}
 <div class="container mt-5">
@@ -33,7 +34,7 @@
         
         <div class="col-md-6">
             <h4>Booking Form</h4>
-            <form method="post">
+            <form method="post" action="{{ booking_detail_url }}">
                 {% csrf_token %}
                 
                 <div class="mb-3">

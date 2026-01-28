@@ -62,7 +62,6 @@ INSTALLED_APPS = [
     'booking',
     'property',
     'userprofile',
-    'availability',
 ]
 # Remove the duplicate and fix the order
 SITE_ID = 1

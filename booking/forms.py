@@ -1,6 +1,7 @@
 
 from django import forms
 from booking.models import Booking
+from datetime import date
 
 
 class CreateBookingForm(forms.ModelForm):
@@ -24,7 +25,7 @@ class CreateBookingForm(forms.ModelForm):
             if check_in >= check_out:
                 raise forms.ValidationError(
                     "Check-out date must be after check-in date.")
-        if check_in and check_in < models.Availability.today_date():
-            raise forms.ValidationError(
-                "Check-in date cannot be in the past.")
+            if check_in < date.today():
+                raise forms.ValidationError(
+                    "Check-in date cannot be in the past.")
         return cleaned_data
