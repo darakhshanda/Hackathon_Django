@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+<h1>User Profile</h1>
+<p>Welcome, {{ user_profiles.user.username }}!</p>
+<p>Email: {{ user_profiles.email }}</p>
+<p>First Name: {{ user_profiles.first_name }}</p>
+<p>Last Name: {{ user_profiles.last_name }}</p>
+<p>Phone Number: {{ user_profiles.phone_number }}</p>
+{# Add more fields as needed #}
+
+{% if is_admin %}
+<hr>
+<h2>Admin Panel</h2>
+<p><strong>User ID:</strong> {{ user_profile.id }}</p>
+<p><strong>Account Active:</strong> {{ user_profile.is_active }}</p>
+<a href="/admin/auth/user/{{ user_profile.id }}/change/">Edit in Admin</a>
+<!-- Add more admin controls here -->
+{% else %}
+<hr>
+<h2>User Actions</h2>
+<a href="{% url 'edit_profile' %}">Edit Profile</a>
+<!-- Add more user actions here -->
+{% endif %}
+{% endblock %}
