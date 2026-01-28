@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
-{% url 'index' as index_url %}
+{% url 'index_url' as index_url %}
 {% url 'property_list' as property_list %}
 {% url 'user_profile' as user_profile %}
 {% url 'account_signup' as signup_url %}
@@ -34,7 +34,7 @@
                     <a class="nav-link" aria-current="page" href="{{ index_url }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ property_list }}">Lodges</a>
+                    <a class="nav-link" href="{{ property_list }}">Contact</a>
                 </li>
                 
                 {% if user.is_authenticated %}
