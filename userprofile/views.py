@@ -36,10 +36,10 @@ def edit_profile(request):
             request.POST, request.FILES, instance=request.user.userprofile)
         if form.is_valid():
             form.save()
-            return redirect('index_url')
+            return redirect('user_profile', user_id=request.user.id)
     else:
         form = ProfileSetupForm(instance=request.user.userprofile)
-    return render(request, 'userprofile/profile_edit.html', {'form': form})
+    return render(request, 'userprofile/edit_profile.html', {'form': form})
 
 
 @login_required()
