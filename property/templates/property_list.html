@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Property List{% endblock %}
+
+{% block content %}
+<p> Hello World</p>
+<p> This is the property list page.</p>
+<div>
+    <ul>
+        {% for property in properties %}
+        <li>{{ property.name }} - {{ property.location }}</li>
+        {% empty %}
+        <li>No properties available.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

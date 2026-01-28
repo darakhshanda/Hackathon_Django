@@ -11,7 +11,7 @@ def property_list(request):
         # Render a 403 Forbidden page for non-admin users
         return render(request, '403.html')
     else:
-        return render(request, 'property/property_list.html')
+        return render(request, 'property_list.html')
 
 
 @login_required()
@@ -21,7 +21,7 @@ def property_detail(request, pk):
         # Render a 403 Forbidden page for non-admin users
         return render(request, '403.html')
     else:
-        return render(request, 'property/property_detail.html', {'pk': pk})
+        return render(request, 'property_detail.html', {'pk': pk})
 
 
 @login_required()
@@ -31,4 +31,4 @@ def property_create(request):
         # Render a 403 Forbidden page for non-admin users
         return render(request, '403.html')
     else:
-        return render(request, 'property/property_form.html')
+        return render(request, 'property_form.html')
