@@ -3,19 +3,19 @@
 
 {% block content %}
 <h1>User Profile</h1>
-<p>Welcome, {{ profile_user.username }}!</p>
-<p>Email: {{ profile_user.email }}</p>
-<p>First Name: {{ profile_user.userprofile.first_name }}</p>
-<p>Last Name: {{ profile_user.userprofile.last_name }}</p>
-<p>Phone Number: {{ profile_user.userprofile.phome_number }}</p>
+<p>Welcome, {{ user_profile.username }}!</p>
+<p>Email: {{ user_profile.email }}</p>
+<p>First Name: {{ user_profile.first_name }}</p>
+<p>Last Name: {{ user_profile.last_name }}</p>
+<p>Phone Number: {{ user_profile.phone_number }}</p>
 {# Add more fields as needed #}
 
 {% if is_admin %}
 <hr>
 <h2>Admin Panel</h2>
-<p><strong>User ID:</strong> {{ profile_user.id }}</p>
-<p><strong>Account Active:</strong> {{ profile_user.userprofile.is_active }}</p>
-<a href="/admin/auth/user/{{ profile_user.id }}/change/">Edit in Admin</a>
+<p><strong>User ID:</strong> {{ user_profile.id }}</p>
+<p><strong>Account Active:</strong> {{ user_profile.is_active }}</p>
+<a href="/admin/auth/user/{{ user_profile.id }}/change/">Edit in Admin</a>
 <!-- Add more admin controls here -->
 {% else %}
 <hr>
