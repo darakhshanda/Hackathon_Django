@@ -64,3 +64,35 @@ def booking_detail(request, booking_id):
         return redirect('index_url')
     
     return render(request, 'booking/booking_detail.html', {'booking': booking})
+
+@login_required()
+def cancel_booking(request, booking_id):
+    """Cancel a booking"""
+    booking = get_object_or_404(Booking, id=booking_id)
+    
+    # Security check: Only the booking owner can cancel
+    if booking.user != request.user:
+        messages.error(request, "You can only cancel your own bookings.")
+        return redirect('index_url')
+    
+    # Only allow cancellation of pending or confirmed bookings
+    if booking.status not in ['pending', 'confirmed']:
+        messages.error(request, f"Cannot cancel a {booking.status} booking.")
+        return redirect('booking:booking_detail', booking_id=booking.id)
+    
+    if request.method == 'POST':
+        # Confirm cancellation
+        booking.status = 'cancelled'
+        booking.save()
+        
+        messages.success(
+            request, 
+            f"Booking for {booking.property.name} has been cancelled successfully."
+        )
+        return redirect('user_profile', user_id=request.user.id)
+    
+    # Show confirmation page
+    context = {
+        'booking': booking,
+    }
+    return render(request, 'booking/cancel_booking.html', context)

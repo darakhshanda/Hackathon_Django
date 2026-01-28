@@ -47,6 +47,7 @@
                     <div class="card-body">
                         <h6 class="card-title">{{ booking.property.name }}</h6>
                         <p class="card-text">
+                            <strong>Booked by:</strong> {{ booking.user.username }}<br>
                             <strong>Check-in:</strong> {{ booking.check_in }}<br>
                             <strong>Check-out:</strong> {{ booking.check_out }}<br>
                             <strong>Guests:</strong> {{ booking.guests }}<br>
@@ -57,10 +58,10 @@
                             </span>
                         </p>
                         <small class="text-muted">Booked on: {{ booking.created_at|date:"M d, Y" }}</small>
-                        <div class="mt-2">
+                      <div class="mt-2">
                             <a href="{% url 'booking:booking_detail' booking_id=booking.id %}" class="btn btn-sm btn-outline-primary">View Details</a>
-                            {% if booking.status == 'pending' %}
-                                <button class="btn btn-sm btn-outline-warning">Cancel Booking</button>
+                            {% if booking.status == 'pending' or booking.status == 'confirmed' %}
+                                <a href="{% url 'booking:cancel_booking' booking_id=booking.id %}" class="btn btn-sm btn-outline-warning">Cancel Booking</a>
                             {% endif %}
                         </div>
                     </div>

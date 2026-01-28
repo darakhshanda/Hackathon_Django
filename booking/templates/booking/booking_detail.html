@@ -30,10 +30,12 @@
             </div>
             
             <hr>
-            <a href="{% url 'index_url' %}" class="btn btn-secondary">Back to Home</a>
-            {% if booking.status == 'pending' %}
-                <button class="btn btn-warning">Cancel Booking</button>
-            {% endif %}
+            <div class="d-flex gap-2">
+                <a href="{% url 'user_profile' user_id=request.user.id %}" class="btn btn-secondary">Back to Profile</a>
+                {% if booking.status == 'pending' or booking.status == 'confirmed' %}
+                    <a href="{% url 'booking:cancel_booking' booking_id=booking.id %}" class="btn btn-warning">Cancel Booking</a>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>

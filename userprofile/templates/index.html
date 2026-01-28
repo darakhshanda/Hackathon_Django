@@ -16,7 +16,11 @@
                     <h5 class="card-title">{{ property.name }}</h5>
                     <p class="card-text">{{ property.description }}</p>
                     <p class="text-muted">${{ property.price_per_night }}/night</p>
-                    <a href="{% url 'booking:create_booking' property_id=property.id %}" class="btn btn-primary">Book Now</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'booking:create_booking' property_id=property.id %}" class="btn btn-primary">Book Now</a>
+                    {% else %}
+                        <a href="{% url 'account_login' %}" class="btn btn-primary">Login to Book</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

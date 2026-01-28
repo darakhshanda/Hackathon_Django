@@ -3,7 +3,9 @@
 {% url 'index' as index_url %}
 {% url 'property_list' as property_list %}
 {% url 'user_profile' as user_profile %}
-
+{% url 'account_signup' as signup_url %}
+{% url 'account_login' as login_url %}
+{% url 'account_logout' as logout_url %}
 
 
 <html lang="en">
@@ -34,9 +36,22 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ property_list }}">Lodges</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'user_profile' user.id %}">Profile</a>
-                </li>
+                
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'user_profile' user.id %}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
