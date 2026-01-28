@@ -8,7 +8,9 @@ from .models import UserProfile
 
 
 def index(request):
-    return render(request, 'index.html')
+    from property.models import Property
+    properties = Property.objects.all()
+    return render(request, 'index.html', {'properties': properties})
 
 
 @login_required()
@@ -19,7 +21,7 @@ def profile_setup(request):
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
-            return redirect('index', user_id=request.user.id)
+            return redirect('index_url')
     else:
         form = ProfileSetupForm()
     return render(request, 'userprofile/profile_setup.html', {'form': form})
@@ -32,7 +34,7 @@ def edit_profile(request):
             request.POST, request.FILES, instance=request.user.userprofile)
         if form.is_valid():
             form.save()
-            return redirect('index', user_id=request.user.id)
+            return redirect('index_url')
     else:
         form = ProfileSetupForm(instance=request.user.userprofile)
     return render(request, 'userprofile/profile_edit.html', {'form': form})

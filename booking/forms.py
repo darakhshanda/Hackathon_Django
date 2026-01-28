@@ -1,24 +1,18 @@
 
-from booking.models import Booking
-from property import models
-from availability import models
-from userprofile import forms
 from django import forms
+from booking.models import Booking
 
 
 class CreateBookingForm(forms.ModelForm):
     class Meta:
         model = Booking
-        fields = ['property.Property', 'check_in',
-                  'check_out', 'guests', 'package']
+        fields = ['property', 'check_in', 'check_out', 'guests']
         exclude = ['user', 'status', 'total_price', 'created_at', 'updated_at']
         widgets = {
-
-            'property': forms.TextInput(attrs={'class': 'form-control'}),
-            'check_in': forms.DateInput(attrs={'type': 'date'}),
-            'check_out': forms.DateInput(attrs={'type': 'date'}),
-            'guests': forms.NumberInput(attrs={'min': 1}),
-
+            'property': forms.Select(attrs={'class': 'form-control'}),
+            'check_in': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'check_out': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'guests': forms.NumberInput(attrs={'min': 1, 'class': 'form-control'}),
         }
 
     def clean(self):
