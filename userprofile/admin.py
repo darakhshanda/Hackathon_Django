@@ -8,6 +8,6 @@ from userprofile.models import UserProfile
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ['user', 'first_name', 'last_name',
-                    'email', 'phome_number', 'is_active']
+                    'email', 'phone_number', 'is_active']
     list_filter = ['is_active', 'created_at']
     search_fields = ['user.username', 'email']

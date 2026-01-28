@@ -3,11 +3,11 @@
 
 {% block content %}
 <h1>User Profile</h1>
-<p>Welcome, {{ user_profile.username }}!</p>
-<p>Email: {{ user_profile.email }}</p>
-<p>First Name: {{ user_profile.first_name }}</p>
-<p>Last Name: {{ user_profile.last_name }}</p>
-<p>Phone Number: {{ user_profile.phone_number }}</p>
+<p>Welcome, {{ user_profiles.user.username }}!</p>
+<p>Email: {{ user_profiles.email }}</p>
+<p>First Name: {{ user_profiles.first_name }}</p>
+<p>Last Name: {{ user_profiles.last_name }}</p>
+<p>Phone Number: {{ user_profiles.phone_number }}</p>
 {# Add more fields as needed #}
 
 {% if is_admin %}
