@@ -1,8 +1,6 @@
-from django import forms
-import re
-
 from availability import models
 from .models import Property
+from django import forms
 from django.core.exceptions import ValidationError
 
 
