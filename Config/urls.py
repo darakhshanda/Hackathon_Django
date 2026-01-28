@@ -17,11 +17,11 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
-from django.shortcuts import render
 from userprofile import views
 
 urlpatterns = [
    
+    path('', views.index, name='index_url'),
     path('admin/', admin.site.urls),
     path("accounts/", include("allauth.urls")),
     path('summernote/', include('django_summernote.urls')),
@@ -29,4 +29,5 @@ urlpatterns = [
     path('property/', include('property.urls')),
     path('userprofile/', include('userprofile.urls')),
     path('availability/', include('availability.urls')),
+    
 ]
