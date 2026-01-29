@@ -5,11 +5,11 @@
 <div class="container py-5">
     <h1 class="mb-4">Welcome to Django Lodges</h1>
     <p>Your personal holiday booking companion. Explore our curated listings and find your perfect getaway.</p>   
-    <div class="row row-cols-1 row-cols-sm-4 row-cols-md-2 row-cols-lg-3 justify-content-center mb-5">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         <!-- Dynamic Property Cards -->
         {% for property in properties %}
-        <div class="d-flex justify-content-center flex-wrap mb-4 gap-2">
-            <div class="card h-100 w-100 d-flex flex-column shadow-sm">
+        <div class="col">
+            <div class="card h-100 shadow-sm">
                 {% if property.image %}
                 <img src="{{ property.image.url }}" class="card-img-top" alt="{{ property.name }}">
                 {% else %}
@@ -32,6 +32,6 @@
         </div>
         {% endfor %}
     </div>
-    </div>
+</div>
 </div>
 {% endblock %}

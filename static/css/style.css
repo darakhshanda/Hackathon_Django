@@ -144,37 +144,29 @@ input[type="submit"]:hover {
 }
 
 /* Responsive Breakpoints */
-@media (max-width: 1200px) {
-    .row-cols-lg-3 > * {
-        width: 33.3333%;
+
+/* Force cards to stack on mobile screens */
+@media (max-width: 767px) {
+    .row.row-cols-1 .col {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
     }
 }
 
-@media (max-width: 992px) {
-    .row-cols-md-2 > * {
-    width: 50%;
-    }
-    .card-img-top {
-        height: 220px
-    }
-}
-
-@media (max-width: 768px) {
-   .row-cols-1 > * {
-        width: 100%;
-    }
-    .card-img-top {
-        height: 200px;
+/* Ensure tablet view shows 2 cards */
+@media (min-width: 768px) and (max-width: 991px) {
+    .row.row-cols-md-2 .col {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
     }
 }
 
-@media (max-width: 576px) {
-    .card-img-top {
-        height: 180px;
+/* Ensure desktop shows 3 cards */
+@media (min-width: 992px) {
+    .row.row-cols-lg-3 .col {
+        flex: 0 0 33.333333% !important;
+        max-width: 33.333333% !important;
     }
-    .g-4 {
-        --bs-gutter-x: 1rem;
-        --bs-gutter-y: 1rem;   
 }
-}
+
 
