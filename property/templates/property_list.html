@@ -8,7 +8,9 @@
 <div>
     <ul>
         {% for property in properties %}
-        <li>{{ property.name }} - {{ property.location }}</li>
+
+        <li>{{ property.name }} - {{ property.location }} <img src="{{ property.image }}" alt="{{ property.name }}">
+        </li>
         {% empty %}
         <li>No properties available.</li>
         {% endfor %}

@@ -1,5 +1,8 @@
 {% extends "base.html" %}
+{% url 'booking:booking_detail' as booking_detail_url %}
+{% url 'booking:edit_booking' as edit_booking_url %}
 {% block title %}User Profile{% endblock %}
+
 
 {% block content %}
 <div class="container mt-4">
@@ -24,7 +27,8 @@
                 <div class="card-body">
                     <p><strong>User ID:</strong> {{ user_profiles.id }}</p>
                     <p><strong>Account Active:</strong> {{ user_profiles.is_active }}</p>
-                    <a href="/admin/auth/user/{{ user_profiles.user.id }}/change/" class="btn btn-primary">Edit in Admin</a>
+                    <a href="/admin/auth/user/{{ user_profiles.user.id }}/change/" class="btn btn-primary">Edit in
+                        Admin</a>
                 </div>
             </div>
             {% else %}
@@ -42,51 +46,59 @@
         <div class="col-md-6">
             <h2>My Bookings</h2>
             {% if user_bookings %}
-                {% for booking in user_bookings %}
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <h6 class="card-title">{{ booking.property.name }}</h6>
-                        <p class="card-text">
-                            <strong>Booked by:</strong> {{ booking.user.username }}<br>
-                            <strong>Check-in:</strong> {{ booking.check_in }}<br>
-                            <strong>Check-out:</strong> {{ booking.check_out }}<br>
-                            <strong>Guests:</strong> {{ booking.guests }}<br>
-                            <strong>Total Price:</strong> ${{ booking.total_price }}<br>
-                            <strong>Status:</strong> 
-                            <span class="badge bg-{% if booking.status == 'confirmed' %}success{% elif booking.status == 'pending' %}warning{% elif booking.status == 'cancelled' %}danger{% else %}secondary{% endif %}">
-                                {{ booking.get_status_display }}
-                            </span>
-                        </p>
-                        <small class="text-muted">Booked on: {{ booking.created_at|date:"M d, Y" }}</small>
-                      <div class="mt-2">
-                            <a href="{% url 'booking:booking_detail' booking_id=booking.id %}" class="btn btn-sm btn-outline-primary">View Details</a>
-                            {% if booking.status == 'pending' or booking.status == 'confirmed' %}
-                                <a href="{% url 'booking:cancel_booking' booking_id=booking.id %}" class="btn btn-sm btn-outline-warning">Cancel Booking</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
+            {% for booking in user_bookings %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h6 class="card-title">{{ booking.property.name }}</h6>
+                    <p class="card-text">
+                        <strong>Booked by:</strong> {{ booking.user.username }}<br>
+                        <strong>Check-in:</strong> {{ booking.check_in }}<br>
+                        <strong>Check-out:</strong> {{ booking.check_out }}<br>
+                        <strong>Guests:</strong> {{ booking.guests }}<br>
+                        <strong>Total Price:</strong> ${{ booking.total_price }}<br>
+                        <strong>Status:</strong>
+                        <span
+                            class="badge bg-{% if booking.status == 'confirmed' %}success{% elif booking.status == 'pending' %}warning{% elif booking.status == 'cancelled' %}danger{% else %}secondary{% endif %}">
+                            {{ booking.get_status_display }}
+                        </span>
+                    </p>
+                    <small class="text-muted">Booked on: {{ booking.created_at|date:"M d, Y" }}</small>
+                    <div class="mt-2">
+                        <a href="{% url 'booking:booking_detail' booking_id=booking.id %}"
+                            class="btn btn-sm btn-outline-primary">View Details</a>
+                        {% if booking.status == 'pending' or booking.status == 'confirmed' %}
+                        <a href="{% url 'booking:cancel_booking' booking_id=booking.id %}"
+                            class="btn btn-sm btn-outline-warning">Cancel Booking</a>
+                        <a href="{% url 'booking:edit_booking' booking_id=booking.id %}"
+                            class="btn btn-sm btn-outline-secondary">Edit Booking</a>
+                        {% endif %}
 
-                <!-- Booking Statistics -->
-<div class="card mt-3">
-    <div class="card-body">
-        <h6>Booking Summary</h6>
-        <p><strong>Total Bookings:</strong> {{ user_bookings|length }}</p>
-        <p><strong>Pending:</strong> {{ booking_stats.pending|default:0 }}</p>
-        <p><strong>Confirmed:</strong> {{ booking_stats.confirmed|default:0 }}</p>
-        <p><strong>Cancelled:</strong> {{ booking_stats.cancelled|default:0 }}</p>
-        <p><strong>Completed:</strong> {{ booking_stats.completed|default:0 }}</p>
-    </div>
-</div>
-            {% else %}
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="card-title">No Bookings Yet</h6>
-                        <p class="card-text">You haven't made any bookings yet.</p>
-                        <a href="{% url 'index_url' %}" class="btn btn-primary">Browse Properties</a>
                     </div>
+
+
                 </div>
+            </div>
+            {% endfor %}
+
+            <!-- Booking Statistics -->
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h6>Booking Summary</h6>
+                    <p><strong>Total Bookings:</strong> {{ user_bookings|length }}</p>
+                    <p><strong>Pending:</strong> {{ booking_stats.pending|default:0 }}</p>
+                    <p><strong>Confirmed:</strong> {{ booking_stats.confirmed|default:0 }}</p>
+                    <p><strong>Cancelled:</strong> {{ booking_stats.cancelled|default:0 }}</p>
+                    <p><strong>Completed:</strong> {{ booking_stats.completed|default:0 }}</p>
+                </div>
+            </div>
+            {% else %}
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title">No Bookings Yet</h6>
+                    <p class="card-text">You haven't made any bookings yet.</p>
+                    <a href="{% url 'index_url' %}" class="btn btn-primary">Browse Properties</a>
+                </div>
+            </div>
             {% endif %}
         </div>
     </div>

@@ -10,13 +10,16 @@
         <div class="col-md-4 mb-4">
             <div class="card">
                 {% if property.image %}
-                <img src="{{ property.image.url }}" class="card-img-top" alt="{{ property.name }}">
+                <img src="{{ property.image }}" class="card-img-top" alt="{{ property.name }}">
                 {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">{{ property.name }}</h5>
                     <p class="card-text">{{ property.description }}</p>
                     <p class="text-muted">${{ property.price_per_night }}/night</p>
-                    <a href="{% url 'booking:create_booking' property_id=property.id %}" class="btn btn-primary">Book Now</a>
+                    <a href="{% url 'property:property_detail' pk=property.id %}" class="btn btn-primary">View
+                        Details</a>
+                    <a href="{% url 'booking:create_booking' property_id=property.id %}" class="btn btn-primary">Book
+                        Now</a>
                 </div>
             </div>
         </div>
