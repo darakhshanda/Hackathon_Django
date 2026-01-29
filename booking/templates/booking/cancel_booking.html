@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-md-6">
                     <p><strong>Guests:</strong> {{ booking.guests }}</p>
-                    <p><strong>Total Price:</strong> ${{ booking.total_price }}</p>
+                    <p><strong>Total Price:</strong> £{{ booking.total_price }}</p>
                     <p><strong>Status:</strong> 
                         <span class="badge bg-{% if booking.status == 'confirmed' %}success{% elif booking.status == 'pending' %}warning{% endif %}">
                             {{ booking.get_status_display }}

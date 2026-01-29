@@ -55,7 +55,7 @@
                         <strong>Check-in:</strong> {{ booking.check_in }}<br>
                         <strong>Check-out:</strong> {{ booking.check_out }}<br>
                         <strong>Guests:</strong> {{ booking.guests }}<br>
-                        <strong>Total Price:</strong> ${{ booking.total_price }}<br>
+                        <strong>Total Price:</strong> £{{ booking.total_price }}<br>
                         <strong>Status:</strong>
                         <span
                             class="badge bg-{% if booking.status == 'confirmed' %}success{% elif booking.status == 'pending' %}warning{% elif booking.status == 'cancelled' %}danger{% else %}secondary{% endif %}">
