@@ -16,7 +16,7 @@
                 <img src="{% static '/images/test1.jpg' %}" class="card-img-top" alt="Default Property Image">
                 {% endif %}
                 <div class="card-body">
-                    <h5 class="card-title">{{ property.name }}</h5>
+                    <h2 class="card-title">{{ property.name }}</h2>
                     <p class="card-text">{{ property.description }}</p>
                     <p class="text-muted">£{{ property.price_per_night }}/night</p>
                     <a href="{% url 'property:property_detail' pk=property.id %}" class="btn btn-primary">View

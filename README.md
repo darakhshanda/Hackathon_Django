@@ -105,3 +105,60 @@ Acceptance criteria:
 
 ![Project Boeard](https://github.com/users/darakhshanda/projects/10/views/1)
 
+## Testing
+### 🧪 Manual Testing Table
+
+#### Authentication & User Management
+
+| Feature            | Expected Result                                            | Result   |
+|--------------------|-----------------------------------------------------------|----------|
+| User Registration  | New user can register                                     | ✅ Pass  |
+| User Login         | Registered user can log in with valid credentials         | ✅ Pass  |
+| User Logout        | Logged-in user can successfully log out                   | ✅ Pass  |
+| Profile Editing    | User can update name, email, and phone                    | ✅ Pass  |
+| Password Change    | User can change password securely                         | ✅ Pass  |
+
+#### Property Browsing & Viewing
+
+| Feature               | Expected Result                                         | Result   |
+|-----------------------|--------------------------------------------------------|----------|
+| Browse Properties     | All users can view property listings                   | ✅ Pass  |
+| View Property Details | Property page shows description, images, price, guests | ✅ Pass  |
+| Availability Calendar | Calendar displays available/unavailable dates          | ✅ Pass  |
+| Mobile Responsive     | All pages display correctly on mobile devices          |   TBC    |
+
+#### Booking System
+
+| Feature                | Expected Result                                      | Result   |
+|------------------------|-----------------------------------------------------|----------|
+| Make Booking           | User can book property with valid dates and guests  | ✅ Pass  |
+| Prevent Double-Booking | System blocks overlapping bookings                  | ✅ Pass  |
+| Booking Confirmation   | User receives confirmation after booking            | ✅ Pass  |
+| Cancel Booking         | User can cancel pending/confirmed bookings          | ✅ Pass  |
+
+#### User Profile & Bookings
+
+| Feature               | Expected Result                                     | Result   |
+|-----------------------|-----------------------------------------------------|----------|
+| View Profile          | User can view personal info and booking stats       |   tbc    |
+| View Bookings         | User sees all bookings with status badges           | ✅ Pass  |
+| Booking Status Update | Booking status updates (pending, confirmed, etc.)   | ✅ Pass  |
+
+#### Admin Functions
+
+| Feature                  | Expected Result                                   | Result   |
+|--------------------------|--------------------------------------------------|----------|
+| Add/Edit/Delete Property | Admin can manage property listings               | ✅ Pass  |
+| Approve/Cancel Booking   | Admin can approve or cancel bookings             | ✅ Pass  |
+| View Users & Bookings    | Admin can view all users and booking history     | ✅ Pass  |
+| Admin Dashboard Access   | Only admins can access admin dashboard           | ✅ Pass  |
+
+#### Notifications
+
+| Feature              | Expected Result                                      | Result   |
+|----------------------|-----------------------------------------------------|----------|
+| Booking Notification | User receives notification for booking events       | ✅ Pass  |
+
+### Lighthouse
+
+![screenshot of lighthouse](static/images/lighthousess.png)
