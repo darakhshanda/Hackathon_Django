@@ -48,3 +48,11 @@ class Property(models.Model):
         if exclude_booking_id:
             bookings = bookings.exclude(id=exclude_booking_id)
         return not bookings.exists()
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('property/', include('property.urls', namespace='property')),  # <-- namespace included
+    # ...other includes...
+]

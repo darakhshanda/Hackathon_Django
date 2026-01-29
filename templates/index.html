@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 <div class="container mt-4">
@@ -10,7 +11,9 @@
         <div class="col-md-4 mb-4">
             <div class="card">
                 {% if property.image %}
-                <img src="{{ property.image }}" class="card-img-top" alt="{{ property.name }}">
+                <img src="{{ property.image.url }}" class="card-img-top" alt="{{ property.name }}">
+                {% else %}
+                <img src="{% static '/images/test1.jpg' %}" class="card-img-top" alt="Default Property Image">
                 {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">{{ property.name }}</h5>
