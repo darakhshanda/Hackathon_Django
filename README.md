@@ -103,7 +103,8 @@ Acceptance criteria:
 -User receives email or in-app notification for booking events.
 -Notifications are accessible and clearly worded.
 
-![Project Boeard](https://github.com/users/darakhshanda/projects/10/views/1)
+Project Board:
+https://github.com/users/darakhshanda/projects/10
 
 ## Testing
 ### 🧪 Manual Testing Table
@@ -162,3 +163,20 @@ Acceptance criteria:
 ### Lighthouse
 
 ![screenshot of lighthouse](static/images/lighthousess.png)
+
+### HTML Validation
+![screenshot of html validation](static/images/htmlss.png)
+
+## AI Usage
+- Used GitHub Copilot to generate boilerplate code and speed up repetitive coding tasks.
+- Leveraged Copilot to assist with debug issues, such as fixing syntax errors and resolving logic bugs in Django views and models.
+- Asked Copilot for explanations of unfamiliar code snippets to better understand use.
+
+## Bugs
+- Sign up only requires user name and password. Once submit is clicked, error is shown where duplicate email is found as the email field is null. 
+
+- CSS would not pull through due to incorrect metatag: resolved.
+
+- Calendar availability: Once you selected a already booked date, the site would get stuck in a loop of refreshing. Resolved. 
+
+- Repetitive issue with pulling codebase and having to reinstall from requirements.txt/django/psychopg/env/venv or terminal would throw up loads of errors. 
