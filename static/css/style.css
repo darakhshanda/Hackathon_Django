@@ -43,6 +43,7 @@ button:hover {
     padding: 20px;
 }
 .card {
+    height: 100;
     background-color: white;
     border-radius: var(--border-radius);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

@@ -15,6 +15,14 @@ def index(request):
     return render(request, 'index.html', {'properties': properties})
 
 
+def contact_view(request):
+    if request.method == 'POST':
+        # You can process/store the form data here if needed
+        messages.success(request, "Your message has been sent successfully!")
+        return redirect('index_url')  # Replace with your home page URL name
+    return render(request, 'contact.html')
+
+
 @login_required()
 def profile_setup(request):
     if request.method == 'POST':
@@ -47,21 +55,22 @@ def user_profile(request, user_id):
     from django.contrib.auth.models import User
     from django.db.models import Count
     from django.shortcuts import get_object_or_404
-    
+
     user = get_object_or_404(User, id=user_id)
-    
+
     # SECURITY CHECK: Only allow users to view their own profile OR admins to view any profile
     if request.user.id != int(user_id) and not (request.user.is_staff or request.user.is_superuser):
         messages.error(request, "You can only view your own profile.")
         return redirect('index_url')
-    
+
     # Get user's bookings
     user_bookings = Booking.objects.filter(user=user).order_by('-created_at')
-    
+
     # Calculate booking statistics (OPTIONAL PART)
-    booking_stats = user_bookings.values('status').annotate(count=Count('status'))
+    booking_stats = user_bookings.values(
+        'status').annotate(count=Count('status'))
     stats_dict = {stat['status']: stat['count'] for stat in booking_stats}
-    
+
     # Get user profile (create one if it doesn't exist)
     try:
         user_profile = user.userprofile
@@ -72,15 +81,16 @@ def user_profile(request, user_id):
             last_name=user.last_name,
             email=user.email
         )
-    
+
     is_admin = request.user.is_staff or request.user.is_superuser
-    
+
     return render(request, 'userprofile/userprofile.html', {
         'user_profiles': user_profile,
         'user_bookings': user_bookings,
         'booking_stats': stats_dict,
         'is_admin': is_admin,
     })
+
 
 @login_required()
 def delete_profile(request, user_id):
@@ -94,6 +104,7 @@ def user_profiles_list(request):
     from django.contrib.auth.models import User
     users = User.objects.all()
     return render(request, 'userprofile/user_profiles_list.html', {'users': users})
+
 
 @login_required()
 def my_profile(request):

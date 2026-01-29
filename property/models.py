@@ -18,7 +18,7 @@ class Property(models.Model):
     location = models.CharField(max_length=200)
     address = models.CharField(max_length=300)
     max_guests = models.IntegerField()
-    image_list = models.FileField(CloudinaryField('image'))
+    image = CloudinaryField('image', blank=True)
     price_per_night = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -39,15 +39,20 @@ class Property(models.Model):
         verbose_name_plural = 'Properties'
         ordering = ['-created_at']
 
-    def is_available(self, check_in, check_out):
-        """Check if property is available for given dates"""
-        from booking.models import Booking
+    def is_available(self, check_in, check_out, exclude_booking_id=None):
+        bookings = self.bookings.filter(
+            check_out__gt=check_in,
+            check_in__lt=check_out,
+            status__in=['pending', 'confirmed']
+        )
+        if exclude_booking_id:
+            bookings = bookings.exclude(id=exclude_booking_id)
+        return not bookings.exists()
+from django.contrib import admin
+from django.urls import path, include
 
-        conflicting_bookings = Booking.objects.filter(
-            property=self,
-            status__in=['confirmed', 'pending'],
-            check_in__lt=check_out,      # Use the parameter, not Booking.check_out
-            check_out__gt=check_in,      # Use the parameter, not Booking.check_in
-        ).exists()
-
-        return not conflicting_bookings
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('property/', include('property.urls', namespace='property')),  # <-- namespace included
+    # ...other includes...
+]

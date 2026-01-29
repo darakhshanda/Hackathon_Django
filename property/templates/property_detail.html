@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Welcome to {{ property.name }}</h1>
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            {% if property.pk %}
+            {% if property.image %}
+            <img src="{{ property.image.url }}" class="card-img-top" alt="{{ property.name }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ property.description }}</h5>
+                <p class="card-text">Location: {{ property.location }}</p>
+                <p class="card-text">Address: {{ property.address }}</p>
+                <p class="text-muted">Price per night: {{ property.price_per_night }}</p>
+                <p class="card-text">Max Guests: {{ property.max_guests }}</p>
+                <!-- Add more fields as needed -->
+                <a href="{% url 'booking:create_booking' property_id=property.id %}" class="btn btn-primary">Book
+                    Now</a>
+                {% else %}
+                <p>Property not found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
