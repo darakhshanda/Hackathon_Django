@@ -143,28 +143,4 @@ input[type="submit"]:hover {
     background-color: #059669;
 }
 
-/* Responsive Breakpoints */
 
-
-@media (max-width: 576px) {
-    .card-img-top {
-        height: 150px; /* Made smaller from 180px */
-    }
-    
-    .g-4 {
-        --bs-gutter-x: 1rem;
-        --bs-gutter-y: 1rem;   
-    }
-    
-    /* Make buttons bigger on mobile */
-    .btn {
-        padding: 12px 20px;
-        font-size: 1rem;
-        width: 100%; /* Full width buttons */
-        margin-bottom: 8px; /* Space between stacked buttons */
-    }
-    
-    .card-body .btn:last-child {
-        margin-bottom: 0; /* Remove margin from last button */
-    }
-}
