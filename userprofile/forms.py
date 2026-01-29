@@ -54,3 +54,4 @@ class ProfileSetupForm(forms.ModelForm):
         user.save()
 
         return super().save(commit=commit)
+
