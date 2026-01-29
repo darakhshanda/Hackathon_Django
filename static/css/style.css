@@ -12,10 +12,12 @@
 }
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: w;
     color: var(--dark);
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 a {
     color: var(--info);
@@ -43,7 +45,6 @@ button:hover {
     padding: 20px;
 }
 .card {
-    height: 100;
     background-color: white;
     border-radius: var(--border-radius);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -99,7 +100,7 @@ button:hover {
     padding: 10px 20px;
 }
 .navbar a {
-    color: white;
+    color: rgb(45, 46, 83);
     margin-right: 15px;
 }
 .navbar a:hover {
@@ -141,3 +142,39 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #059669;
 }
+
+/* Responsive Breakpoints */
+@media (max-width: 1200px) {
+    .row-cols-lg-3 > * {
+        width: 33.3333%;
+    }
+}
+
+@media (max-width: 992px) {
+    .row-cols-md-2 > * {
+    width: 50%;
+    }
+    .card-img-top {
+        height: 220px
+    }
+}
+
+@media (max-width: 768px) {
+   .row-cols-1 > * {
+        width: 100%;
+    }
+    .card-img-top {
+        height: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .card-img-top {
+        height: 180px;
+    }
+    .g-4 {
+        --bs-gutter-x: 1rem;
+        --bs-gutter-y: 1rem;   
+}
+}
+

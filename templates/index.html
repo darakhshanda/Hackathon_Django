@@ -2,14 +2,14 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-4">
+<div class="container py-5">
     <h1 class="mb-4">Welcome to Django Lodges</h1>
-    <p>Your personal holiday booking companion. Explore our curated listings and find your perfect getaway.</p>
-    <div class="row">
+    <p>Your personal holiday booking companion. Explore our curated listings and find your perfect getaway.</p>   
+    <div class="row row-cols-1 row-cols-sm-4 row-cols-md-2 row-cols-lg-3 justify-content-center mb-5">
         <!-- Dynamic Property Cards -->
         {% for property in properties %}
-        <div class="col-md-4 mb-4">
-            <div class="card">
+        <div class="d-flex justify-content-center flex-wrap mb-4 gap-2">
+            <div class="card h-100 w-100 d-flex flex-column shadow-sm">
                 {% if property.image %}
                 <img src="{{ property.image.url }}" class="card-img-top" alt="{{ property.name }}">
                 {% else %}
@@ -18,7 +18,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ property.name }}</h5>
                     <p class="card-text">{{ property.description }}</p>
-                    <p class="text-muted">${{ property.price_per_night }}/night</p>
+                    <p class="text-muted">£{{ property.price_per_night }}/night</p>
                     <a href="{% url 'property:property_detail' pk=property.id %}" class="btn btn-primary">View
                         Details</a>
                     <a href="{% url 'booking:create_booking' property_id=property.id %}" class="btn btn-primary">Book
@@ -31,6 +31,7 @@
             <p class="alert alert-info">No properties available at the moment.</p>
         </div>
         {% endfor %}
+    </div>
     </div>
 </div>
 {% endblock %}

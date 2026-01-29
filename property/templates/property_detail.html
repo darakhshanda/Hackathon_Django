@@ -14,7 +14,7 @@
                 <h5 class="card-title">{{ property.description }}</h5>
                 <p class="card-text">Location: {{ property.location }}</p>
                 <p class="card-text">Address: {{ property.address }}</p>
-                <p class="text-muted">Price per night: {{ property.price_per_night }}</p>
+                <p class="text-muted">Price per night: £{{ property.price_per_night }}</p>
                 <p class="card-text">Max Guests: {{ property.max_guests }}</p>
                 <!-- Add more fields as needed -->
                 <a href="{% url 'booking:create_booking' property_id=property.id %}" class="btn btn-primary">Book
