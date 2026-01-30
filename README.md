@@ -126,7 +126,7 @@ https://github.com/users/darakhshanda/projects/10
 | Browse Properties     | All users can view property listings                   | ✅ Pass  |
 | View Property Details | Property page shows description, images, price, guests | ✅ Pass  |
 | Availability Calendar | Calendar displays available/unavailable dates          | ✅ Pass  |
-| Mobile Responsive     | All pages display correctly on mobile devices          |   TBC    |
+| Mobile Responsive     | All pages display correctly on mobile devices          | ✅ Pass  |
 
 #### Booking System
 
@@ -141,7 +141,7 @@ https://github.com/users/darakhshanda/projects/10
 
 | Feature               | Expected Result                                     | Result   |
 |-----------------------|-----------------------------------------------------|----------|
-| View Profile          | User can view personal info and booking stats       |   tbc    |
+| View Profile          | User can view personal info and booking stats       | ✅ Pass  |
 | View Bookings         | User sees all bookings with status badges           | ✅ Pass  |
 | Booking Status Update | Booking status updates (pending, confirmed, etc.)   | ✅ Pass  |
 
